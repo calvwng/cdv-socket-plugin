@@ -329,12 +329,17 @@ public class SocketPlugin extends CordovaPlugin {
     /**
      * Callback for Connection object data receive. Relay information to javascript object method: window.tlantic.plugins.socket.receive();
      *
-     * @param host
-     * @param port
-     * @param chunk
+     * @param host Host that sent the data
+     * @param port Host port for connection
+     * @param chunk Data to be received in byte array form
      */
     public synchronized void sendMessage(String host, int port, byte[] chunk) {
-        final String receiveHook = "window.tlantic.plugins.socket.receive(\"" + host + "\"," + port + ",\"" + this.buildKey(host, port) + "\",window.atob(\"" + Base64.encodeToString(chunk, Base64.DEFAULT) + "\"));";
+        final String receiveHook = "window.tlantic.plugins.socket.receive("
+          + "\"" + host + "\","
+          + port + ",\""
+          + this.buildKey(host, port) + "\","
+          + java.util.Arrays.toString(chunk)
+          + ");";
 
         cordova.getActivity().runOnUiThread(new Runnable() {
 
