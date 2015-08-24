@@ -157,10 +157,10 @@ This method is a callback invoked by native code through webview capabilities. Y
 
 ```
 document.addEventListener(window.tlantic.plugins.socket.receiveHookName, function (ev) {
-  console.log(ev.metadata.host);    // host who sent the data
-  console.log(ev.metadata.port);    // sender port
-  console.log(ev.metadata.id);      // connection id
-  console.log(ev.metadata.data);    // received data
+  console.log(ev.metadata.connection.host);    // host who sent the data
+  console.log(ev.metadata.connection.port);    // sender port
+  console.log(ev.metadata.connection.id);      // connection id
+  console.log(ev.metadata.data);    // received data as a byte array
 });
 ```
 
