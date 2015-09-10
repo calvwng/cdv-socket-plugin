@@ -49,9 +49,7 @@ Socket.prototype.sendBinary = function (successCallback, errorCallback, connecti
 Socket.prototype.receive = function (host, port, connectionId, chunk) {
     'use strict';
 
-    var evReceive = document.createEvent('Events');
-
-    evReceive.initEvent(this.receiveHookName, true, true);
+    var evReceive = new Event(this.receiveHookName, {"bubbles":true, "cancelable":false});
     evReceive.metadata = {
         connection: {
             id: connectionId,
